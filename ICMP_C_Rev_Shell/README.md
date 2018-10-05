@@ -1,4 +1,4 @@
- icmpsh - icmp windows command shell (slave)
+ icmpsh - icmp windows command shell
  Original Copyright (c) 2010, Nico Leidecker <nico@leidecker.info>
 
      Modified by F.Zinzloun.Bersani to a Win32 C console app. Folloows configuration in VS 2015:
