@@ -5,7 +5,7 @@
 	 - create a C++ Win32 Console App
 	 - delete all the headers file, leave only the main cpp file
 	 - copy the content of this file inside the main cpp file. Change the extension of the file in .c
-	 - configure the attacker IP at line
+	 - configure the attacker IP at line 39
 	 - open the project's properties window,expand C/C++, select All options and set the following:
 		-Compile as: Compile as C code/TC
 		-Precompiled Headers: Not using precompiled headers
