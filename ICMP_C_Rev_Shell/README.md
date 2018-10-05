@@ -1,7 +1,7 @@
  icmpsh - icmp windows MASTER-SLAVE shell
  Original Copyright (c) 2010, Nico Leidecker <nico@leidecker.info>
 
-     Modified by F.Zinzloun.Bersani to a Win32 C console app. Folloows configuration in VS 2015:
+     Modified by F.Zinzloun.Bersani to a Win32 C console app. Folloows configuration in VS 2015\17:
 	 - create a C++ Win32 Console App
 	 - delete all the headers file, leave only the main cpp file
 	 - copy the content of this file inside the main cpp file. Change the extension of the file in .c
@@ -20,4 +20,5 @@
 
     Now the master is waiting for the incoming victim connection...
     
-    On the windows victim (slave) machine execute the compiled exe, check the Linux master box, you should get a DOS shell!  
+    On the windows victim (slave) machine execute the compiled exe,
+    check the Linux master box, you should get a DOS shell!  
