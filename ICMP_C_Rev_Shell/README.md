@@ -1,4 +1,4 @@
- icmpsh - simple icmp command shell
+ icmpsh - reverse icmp windows command shell
  Original Copyright (c) 2010, Nico Leidecker <nico@leidecker.info>
 
 **********************************************************
@@ -9,6 +9,7 @@
 	 - create a C++ Win32 Console App
 	 - delete all the headers file, leave only the main cpp file
 	 - copy the content of this file inside the main cpp file. Change the extension of the file in .c
+	 - set the attacker IP 
 	 - open the project's properties window,expand C/C++, select All options and set the following:
 		-Compile as: Compile as C code/TC
 		-Precompiled Headers: Not using precompiled headers
